@@ -42,28 +42,28 @@ public class SeeSaw : MonoBehaviour {
 				case seesawTypes.evenRotation://rotates the same amount regardless of weight
 //						print ("evenrot");
 						if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
-								axis = new Vector3 (-1, 0, 0);
+								axis = new Vector3 (0, 0, -1);
 						} else {//right heavy
-								axis = new Vector3 (1, 0, 0);
+								axis = new Vector3 (0, 0, 1);
 						}
 						weightPower = 1;
 						break;
 				case seesawTypes.weightBased://rotates the heaviest side by amount based on weight
 						if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
-								axis = new Vector3 (-1, 0, 0);
+								axis = new Vector3 (0, 0, -1);
 								weightPower = Mathf.Abs (leftWeight);
 						} else {//right heavy
-								axis = new Vector3 (1, 0, 0);
+								axis = new Vector3 (0, 0, 1);
 								weightPower = Mathf.Abs (rightWeight);
 						}
 						break;
 				case seesawTypes.weightDifference://rotates the heaviest side by the difference between both sides
 //						print ("weightdiff");
 						if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
-								axis = new Vector3 (-1, 0, 0);
+								axis = new Vector3 (0, 0, -1);
 								weightPower = Mathf.Abs (leftWeight - rightWeight);
 						} else {//right heavy
-								axis = new Vector3 (1, 0, 0);
+								axis = new Vector3 (0, 0, 1);
 								weightPower = Mathf.Abs (rightWeight - leftWeight);
 						}
 						break;
@@ -99,7 +99,7 @@ public class SeeSaw : MonoBehaviour {
 
 	//gets the distance, in case we like switch formulas or normalize these things
 	float getDist(Vector3 a, Vector3 b){
-		return (b.z - a.z);
+		return (b.x - a.x);
 	}
 
 	//returns 1 if right of seesaw center, -1 if left
