@@ -112,7 +112,7 @@ public class PlayerCharacterController : MonoBehaviour {
 		movement = new Vector3(movement.x, verticalSpeed, movement.z);
 		
 		//transform.position = Vector3.Lerp(transform.position, movement + transform.position, movementSmoothing);
-		charController.Move(movement);
+//		charController.Move(movement);
 		oldPos = transform.position;
 	}
 

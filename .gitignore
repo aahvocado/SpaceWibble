@@ -90,3 +90,6 @@ ProjectSettings/TimeManager.asset
 ProjectSettings/EditorBuildSettings.asset
 ProjectSettings/NavMeshLayers.asset
 ProjectSettings/TagManager.asset
+
+SeeSawTest/Assets/Editor.meta
+SeeSawTest/Assets/Editor/
