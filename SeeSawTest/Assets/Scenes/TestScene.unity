@@ -256,7 +256,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.30967976e-06, y: -.900217831, z: 0}
+  m_ConnectedAnchor: {x: -2.31707986e-06, y: -.900217891, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -611,7 +611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seesaw: {fileID: 969883362}
-  rotationPower: 11
+  rotationPower: .100000001
+  axis: {x: 0, y: 0, z: 0}
   seesawType: 2
 --- !u!23 &1131216460
 Renderer:
@@ -659,8 +660,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1131216457}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2.41967344, z: 0}
+  m_LocalScale: {x: 1, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 969883366}
   m_RootOrder: 0
@@ -1144,7 +1145,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 6.85453369e-06, y: -.670001566, z: 0}
+  m_ConnectedAnchor: {x: 6.82141081e-06, y: -.670001566, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1209,7 +1210,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -3.12924362e-06, y: -.940390587, z: 0}
+  m_ConnectedAnchor: {x: -3.14447607e-06, y: -.940390646, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0

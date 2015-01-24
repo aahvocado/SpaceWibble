@@ -6,6 +6,7 @@ public class SeeSaw : MonoBehaviour {
 
 	private Vector3 centerPoint;//location of the pivot
 	public float rotationPower;//multiplicative power of rotation blah
+	public Vector3 axis;
 
 	private ArrayList leftObjects;
 	private ArrayList rightObjects;
@@ -35,7 +36,7 @@ public class SeeSaw : MonoBehaviour {
 				}
 				Debug.Log ("Left Weight: " + leftWeight + " vs Right Weight: " + rightWeight);
 
-				Vector3 axis = Vector3.zero;
+				axis = Vector3.zero;
 				float weightPower = 0;
 				switch (seesawType) {
 				case seesawTypes.evenRotation://rotates the same amount regardless of weight
