@@ -10,6 +10,9 @@ public class SeeSaw : MonoBehaviour {
 	private ArrayList leftObjects;
 	private ArrayList rightObjects;
 	private string[] tagsThatAffectSeesaw;
+
+	public enum seesawTypes {evenRotation, weightBased, weightDifference};
+	public seesawTypes seesawType = seesawTypes.evenRotation;
 	// Use this for initialization
 	void Start () {
 		centerPoint = seesaw.transform.position;
@@ -20,20 +23,55 @@ public class SeeSaw : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("Left Size: " + leftObjects.Count + " vs Right Size: " + rightObjects.Count);
+//		Debug.Log ("Left Size: " + leftObjects.Count + " vs Right Size: " + rightObjects.Count);
+		if (leftObjects.Count > 0 || rightObjects.Count > 0) {
+				float leftWeight = 0;
+				float rightWeight = 0;
+				foreach (GameObject gameobj in leftObjects) {
+						leftWeight = leftWeight + getDist (centerPoint, gameobj.transform.position);
+				}
+				foreach (GameObject gameobj in rightObjects) {
+						rightWeight = rightWeight + getDist (centerPoint, gameobj.transform.position);
+				}
+				Debug.Log ("Left Weight: " + leftWeight + " vs Right Weight: " + rightWeight);
 
-		float leftWeight = 0;
-		float rightWeight = 0;
-		foreach(GameObject gameobj in leftObjects){
-			leftWeight = leftWeight + getDist(centerPoint, gameobj.transform.position);
+				Vector3 axis = Vector3.zero;
+				float weightPower = 0;
+				switch (seesawType) {
+				case seesawTypes.evenRotation://rotates the same amount regardless of weight
+//						print ("evenrot");
+						if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
+								axis = new Vector3 (-1, 0, 0);
+						} else {//right heavy
+								axis = new Vector3 (1, 0, 0);
+						}
+						weightPower = 1;
+						break;
+				case seesawTypes.weightBased://rotates the heaviest side by amount based on weight
+						if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
+								axis = new Vector3 (-1, 0, 0);
+								weightPower = Mathf.Abs (leftWeight);
+						} else {//right heavy
+								axis = new Vector3 (1, 0, 0);
+								weightPower = Mathf.Abs (rightWeight);
+						}
+						break;
+				case seesawTypes.weightDifference://rotates the heaviest side by the difference between both sides
+//						print ("weightdiff");
+						if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
+								axis = new Vector3 (-1, 0, 0);
+								weightPower = Mathf.Abs (leftWeight - rightWeight);
+						} else {//right heavy
+								axis = new Vector3 (1, 0, 0);
+								weightPower = Mathf.Abs (rightWeight - leftWeight);
+						}
+						break;
+				}
+			if(Mathf.Abs(weightPower) < .5){
+				weightPower = 0;
+			}
+			seesaw.transform.RotateAround (centerPoint, axis, weightPower * rotationPower * Time.deltaTime);
 		}
-		foreach(GameObject gameobj in rightObjects){
-			rightWeight = rightWeight + getDist(centerPoint, gameobj.transform.position);
-		}
-		Debug.Log ("Left Weight: " + leftWeight + " vs Right Weight: " + rightWeight);
-
-		Vector3 axis = Mathf.Abs(leftWeight) > Mathf.Abs(rightWeight) ? new Vector3(leftWeight,0,0):new Vector3(rightWeight,0,0);
-		seesaw.transform.RotateAround(centerPoint, axis, 10*Time.deltaTime);
 	}
 
 	void OnTriggerEnter(Collider col){
