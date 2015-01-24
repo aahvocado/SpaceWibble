@@ -23,64 +23,64 @@ public class SeeSaw : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		ArrayList leftObjects = new ArrayList ();
-		ArrayList rightObjects = new ArrayList ();
-		foreach(GameObject ssobj in contactObjects){
-			int dir = getObjDirection(ssobj.transform.position);
-			if(dir < 0){
-				leftObjects.Add(ssobj);
-			}else if(dir > 0){
-				rightObjects.Add(ssobj);
-			}
-		}
+				ArrayList leftObjects = new ArrayList ();
+				ArrayList rightObjects = new ArrayList ();
+				foreach (GameObject ssobj in contactObjects) {
+						int dir = getObjDirection (ssobj.transform.position);
+						if (dir < 0) {
+								leftObjects.Add (ssobj);
+						} else if (dir > 0) {
+								rightObjects.Add (ssobj);
+						}
+				}
 //		Debug.Log ("Left: " + leftObjects.Count + " vs Right: " + rightObjects.Count);
-		if (leftObjects.Count > 0 || rightObjects.Count > 0) {
-			float leftWeight = 0;
-			float rightWeight = 0;
-			foreach (GameObject gameobj in leftObjects) {
-//				leftWeight = leftWeight + getDist (centerPoint, gameobj.transform.position);
-				leftWeight = leftWeight + gameobj.GetComponent<ObstacleClass>().getWeight();
-			}
-			foreach (GameObject gameobj in rightObjects) {
-//				rightWeight = rightWeight + getDist (centerPoint, gameobj.transform.position);
-				rightWeight = rightWeight + gameobj.GetComponent<ObstacleClass>().getWeight();
-			}
-//			Debug.Log ("Left Weight: " + leftWeight + " vs Right Weight: " + rightWeight);
+				if (leftObjects.Count > 0 || rightObjects.Count > 0) {
+						float leftWeight = 0;
+						float rightWeight = 0;
+						foreach (GameObject gameobj in leftObjects) {
+								leftWeight = leftWeight + gameobj.GetComponent<ObstacleClass> ().getWeight ();
+						}
+						foreach (GameObject gameobj in rightObjects) {
+								rightWeight = rightWeight + gameobj.GetComponent<ObstacleClass> ().getWeight ();
+						}
+						Debug.Log ("Left: " + leftWeight + " vs Right: " + rightWeight);
 			
-			axis = Vector3.zero;
-			float weightPower = 0;
-			switch (seesawType) {
-			case seesawTypes.evenRotation://rotates the same amount regardless of weight
-				if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
-					axis = new Vector3 (0, 0, -1);
-				} else {//right heavy
-					axis = new Vector3 (0, 0, 1);
-				}
-				weightPower = 5;
-				break;
-			case seesawTypes.weightBased://rotates the heaviest side by amount based on weight
-				if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
-					axis = new Vector3 (0, 0, -1);
-					weightPower = Mathf.Abs (leftWeight);
-				} else {//right heavy
-					axis = new Vector3 (0, 0, 1);
-					weightPower = Mathf.Abs (rightWeight);
-				}
-				break;
-			case seesawTypes.weightDifference://rotates the heaviest side by the difference between both sides
-				if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
-					axis = new Vector3 (0, 0, -1);
-					weightPower = Mathf.Abs (leftWeight - rightWeight);
-				} else {//right heavy
-					axis = new Vector3 (0, 0, 1);
-					weightPower = Mathf.Abs (rightWeight - leftWeight);
-				}
-				break;
-			}
-			if(Mathf.Abs(weightPower) < .5){
-				weightPower = 0;
-			}
-			seesaw.transform.RotateAround (centerPoint, axis, weightPower * rotationPower * Time.deltaTime);
+						axis = Vector3.zero;
+						float weightPower = 0;
+						if (leftWeight != rightWeight) {
+								switch (seesawType) {
+								case seesawTypes.evenRotation://rotates the same amount regardless of weight
+										if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
+												axis = new Vector3 (0, 0, 1);
+										} else {//right heavy
+												axis = new Vector3 (0, 0, -1);
+										}
+										weightPower = 5;
+										break;
+								case seesawTypes.weightBased://rotates the heaviest side by amount based on weight
+										if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
+												axis = new Vector3 (0, 0, 1);
+												weightPower = Mathf.Abs (leftWeight);
+										} else {//right heavy
+												axis = new Vector3 (0, 0, -1);
+												weightPower = Mathf.Abs (rightWeight);
+										}
+										break;
+								case seesawTypes.weightDifference://rotates the heaviest side by the difference between both sides
+										if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
+												axis = new Vector3 (0, 0, 1);
+												weightPower = Mathf.Abs (leftWeight - rightWeight);
+										} else {//right heavy
+												axis = new Vector3 (0, 0, -1);
+												weightPower = Mathf.Abs (rightWeight - leftWeight);
+										}
+										break;
+								}
+								if (Mathf.Abs (weightPower) < .5) {
+										weightPower = 0;
+								}
+								seesaw.transform.RotateAround (centerPoint, axis, weightPower * rotationPower * Time.deltaTime);
+						}
 		}
 	}
 	
