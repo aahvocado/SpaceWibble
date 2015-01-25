@@ -4,6 +4,7 @@ using System.Collections;
 public class ObstacleClass : MonoBehaviour {
 	public float weight;
 	private float minDist = 2.5f;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -19,6 +20,10 @@ public class ObstacleClass : MonoBehaviour {
 			this.renderer.material.color = Color.white;
 		}
 
+	}
+
+	public bool isDestroyed(){
+		return false;
 	}
 
 	public float getWeight(){

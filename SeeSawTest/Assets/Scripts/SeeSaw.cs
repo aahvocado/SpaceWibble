@@ -71,7 +71,7 @@ public class SeeSaw : MonoBehaviour {
 								//rotation direction
 								float angle = seesaw.transform.rotation.eulerAngles.x;
 								if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
-									if((angle < 360-maxRotation && angle>180)){
+									if(angle < 360-maxRotation && angle>180){
 									}else{
 										axis = new Vector3 (0, 0, 1);
 									}
@@ -85,7 +85,6 @@ public class SeeSaw : MonoBehaviour {
 								if (Mathf.Abs (weightPower) < .5) {
 										weightPower = 0;
 								}
-								Debug.Log(seesaw.transform.rotation.eulerAngles);
 								seesaw.transform.RotateAround (centerPoint, axis, weightPower * rotationPower * Time.deltaTime);
 						}
 		}
