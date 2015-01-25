@@ -41,6 +41,8 @@ public class SeeSaw : MonoBehaviour {
 								leftWeight = leftWeight + gameobj.GetComponent<ObstacleClass>().getWeight ();
 						}
 						foreach (GameObject gameobj in rightObjects) {
+				Debug.Log ("rightObject");
+				Debug.Log (gameobj.gameObject.name);
 								rightWeight = rightWeight + gameobj.GetComponent<ObstacleClass> ().getWeight ();
 						}
 //						Debug.Log ("Left: " + leftWeight + " vs Right: " + rightWeight);

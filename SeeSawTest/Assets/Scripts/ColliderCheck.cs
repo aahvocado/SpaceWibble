@@ -21,9 +21,9 @@ public class ColliderCheck : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 		//Debug.Log ("on trigger");
-		Debug.Log ("enter trigger");
-		Debug.Log (col.name);
-		Debug.Log (col.gameObject.layer);
+		//Debug.Log ("enter trigger");
+		//Debug.Log (col.name);
+		//Debug.Log (col.gameObject.layer);
 		
 		if (col.gameObject.layer == groundLayer) {
 			isGrounded = true;
@@ -49,7 +49,7 @@ public class ColliderCheck : MonoBehaviour {
 	
 	void OnTriggerExit(Collider col) {
 		//Debug.Log ("on trigger exit");
-		Debug.Log (col.name);
+		//Debug.Log (col.name);
 		if (col.gameObject.layer == groundLayer) {
 			isGrounded = false;
 			isInGround = false;
