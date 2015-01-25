@@ -43,7 +43,7 @@ public class SeeSaw : MonoBehaviour {
 						foreach (GameObject gameobj in rightObjects) {
 								rightWeight = rightWeight + gameobj.GetComponent<ObstacleClass> ().getWeight ();
 						}
-						Debug.Log ("Left: " + leftWeight + " vs Right: " + rightWeight);
+//						Debug.Log ("Left: " + leftWeight + " vs Right: " + rightWeight);
 			
 						axis = Vector3.zero;
 						float weightPower = 0;
@@ -86,14 +86,12 @@ public class SeeSaw : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider col){
 		if (isAffectsSeesaw(col.transform.tag)) {
-			int dir = getObjDirection(col.gameObject.transform.position);
 			contactObjects.Add(col.gameObject);
 		}
 	}
 	//
 	void OnTriggerExit(Collider col){
 		if (isAffectsSeesaw(col.transform.tag)) {
-			int dir = getObjDirection(col.gameObject.transform.position);
 			contactObjects.Remove(col.gameObject);
 		}
 	}
