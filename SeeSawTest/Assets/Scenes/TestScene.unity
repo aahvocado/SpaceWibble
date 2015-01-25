@@ -418,7 +418,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.31707986e-06, y: -.900217891, z: 0}
+  m_ConnectedAnchor: {x: -2.30967976e-06, y: -.900217831, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -703,6 +703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seesaw: {fileID: 146221239}
+  maxRotation: 0
   rotationPower: .100000001
   axis: {x: 0, y: 0, z: 0}
   minDistanceFromCenter: 0
@@ -913,7 +914,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 8.49988282e-06, y: -.670002401, z: 0}
+  m_ConnectedAnchor: {x: 8.49366097e-06, y: -.670002401, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -2177,7 +2178,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -6.27671261e-06, y: -.940388858, z: 0}
+  m_ConnectedAnchor: {x: -6.25848725e-06, y: -.940388799, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
