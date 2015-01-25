@@ -174,12 +174,20 @@ Prefab:
       objectReference: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 11400002, guid: a7af9a6f628d83c46a2618e1f0b9d30e, type: 2}
       propertyPath: acceleration
-      value: .00200000009
+      value: .200000003
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: a7af9a6f628d83c46a2618e1f0b9d30e, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 11400002, guid: a7af9a6f628d83c46a2618e1f0b9d30e, type: 2}
+      propertyPath: linearDampening
+      value: .0399999991
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: a7af9a6f628d83c46a2618e1f0b9d30e, type: 2}
+      propertyPath: currentSpeed
+      value: .0599999987
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 13500000, guid: a7af9a6f628d83c46a2618e1f0b9d30e, type: 2}
     - {fileID: 14300000, guid: a7af9a6f628d83c46a2618e1f0b9d30e, type: 2}
@@ -199,7 +207,7 @@ GameObject:
   - 33: {fileID: 146221243}
   - 65: {fileID: 146221242}
   - 23: {fileID: 146221241}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: seesaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1395,6 +1403,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1519825506}
   - 136: {fileID: 1519825507}
+  - 114: {fileID: 1519825508}
   m_Layer: 0
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -1427,6 +1436,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 5.96046448e-08, y: 0, z: -8.94069672e-08}
+--- !u!114 &1519825508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1519825505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63feddab14d0d2f4a83d7269c3a7761a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  isInGround: 0
+  player: {fileID: 0}
 --- !u!1 &1669129365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,6 +1648,7 @@ GameObject:
   - 23: {fileID: 1955236382}
   - 114: {fileID: 1955236381}
   - 136: {fileID: 1955236380}
+  - 143: {fileID: 1955236385}
   m_Layer: 10
   m_Name: _Player2
   m_TagString: Player
@@ -1670,9 +1694,9 @@ MonoBehaviour:
   verticalStab: .100000001
   verticalStabSpeed: 2
   maxSpeed: 5
-  acceleration: .00200000009
-  currentSpeed: .00400000019
-  linearDampening: .00800000038
+  acceleration: .200000003
+  currentSpeed: .0599999987
+  linearDampening: .0399999991
   movementSmoothing: 3
 --- !u!23 &1955236382
 Renderer:
@@ -1716,6 +1740,20 @@ Transform:
   - {fileID: 1519825506}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!143 &1955236385
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1955236379}
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: .500000119
+  m_SlopeLimit: 45
+  m_StepOffset: .300000012
+  m_SkinWidth: .0799999982
+  m_MinMoveDistance: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2017608082
 GameObject:
   m_ObjectHideFlags: 0

@@ -74,7 +74,7 @@ public class PlayerCharacterController : MonoBehaviour {
 		//	Debug.DrawLine(movement*30 + transform.position, transform.position, Color.red);
 
 		if (movement.magnitude < maxSpeed) {
-			movement += (new Vector3(movementInput.x, 0, movementInput.z)) * (currentSpeed); //Quaternion.FromToRotation(Vector3.forward, -target) * 
+			movement += (new Vector3(movementInput.x, 0, movementInput.z)) * (currentSpeed) * Time.deltaTime; //Quaternion.FromToRotation(Vector3.forward, -target) * 
 		}
 		//CalculateSpeed ();
 		//movement = movement ;//e * Time.deltaTime;// * 2 * speedSustain);
@@ -109,6 +109,9 @@ public class PlayerCharacterController : MonoBehaviour {
 		//RotateSphere ();
 		//IsColliding();
 
+		//Debug.DrawLine( new Vector3(0, transform.position.y, 0), new Vector3(movementInput.x, transform.position.y, movementInput.z), Color.green);
+		
+		Debug.DrawLine(transform.position, (transform.position + new Vector3(movementInput.x, 0, movementInput.z)) * 2, Color.green);
 		movement = new Vector3(movement.x, verticalSpeed, movement.z);
 		
 		//transform.position = Vector3.Lerp(transform.position, movement + transform.position, movementSmoothing);
@@ -173,13 +176,13 @@ public class PlayerCharacterController : MonoBehaviour {
 
 
 	public bool IsGrounded () {
-		GroundCollider.transform.position = new Vector3 (transform.position.x, transform.position.y -0.1f, transform.position.z);
+		//GroundCollider.transform.position = new Vector3 (transform.position.x, transform.position.y -0.1f, transform.position.z);
 		isGrounded = GroundCollider.GroundCheck();
 		return isGrounded;
 	}
 
 	public bool IsInGrounded () {
-		GroundCollider.transform.position = new Vector3 (transform.position.x, transform.position.y -0.1f, transform.position.z);
+		//GroundCollider.transform.position = new Vector3 (transform.position.x, transform.position.y -0.1f, transform.position.z);
 		isInGround = GroundCollider.InGroundCheck();
 		return isInGround;
 	}

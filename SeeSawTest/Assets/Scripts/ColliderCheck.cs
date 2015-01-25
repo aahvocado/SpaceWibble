@@ -5,7 +5,7 @@ public class ColliderCheck : MonoBehaviour {
 
 	public bool isGrounded;
 	public bool isInGround;
-	private int groundLayer = 9;
+	private int groundLayer = 8;
 	public GameObject player;
 	private Vector3 contactVector;
 
@@ -21,6 +21,10 @@ public class ColliderCheck : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 		//Debug.Log ("on trigger");
+		Debug.Log ("enter trigger");
+		Debug.Log (col.name);
+		Debug.Log (col.gameObject.layer);
+		
 		if (col.gameObject.layer == groundLayer) {
 			isGrounded = true;
 		//	Debug.Log ("isGround True");
@@ -45,6 +49,7 @@ public class ColliderCheck : MonoBehaviour {
 	
 	void OnTriggerExit(Collider col) {
 		//Debug.Log ("on trigger exit");
+		Debug.Log (col.name);
 		if (col.gameObject.layer == groundLayer) {
 			isGrounded = false;
 			isInGround = false;
