@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seesaw: {fileID: 146221239}
+  maxRotation: 0
   rotationPower: .100000001
   axis: {x: 0, y: 0, z: 0}
   minDistanceFromCenter: 2.5

@@ -5,6 +5,7 @@ public class SeeSaw : MonoBehaviour {
 	public GameObject seesaw;
 	
 	private Vector3 centerPoint;//location of the pivot
+	public float maxRotation;//in degrees I think
 	public float rotationPower;//multiplicative power of rotation blah
 	public Vector3 axis;
 	public float minDistanceFromCenter;//the minimum distance an object has to be from the center to affect the seesaw
@@ -41,43 +42,46 @@ public class SeeSaw : MonoBehaviour {
 								leftWeight = leftWeight + gameobj.GetComponent<ObstacleClass>().getWeight ();
 						}
 						foreach (GameObject gameobj in rightObjects) {
-				Debug.Log ("rightObject");
-				Debug.Log (gameobj.gameObject.name);
 								rightWeight = rightWeight + gameobj.GetComponent<ObstacleClass> ().getWeight ();
 						}
-//						Debug.Log ("Left: " + leftWeight + " vs Right: " + rightWeight);
+//						Debug.Log ("Left wt: " + leftWeight + " vs Righ wt: " + rightWeight);
 			
 						axis = Vector3.zero;
 						float weightPower = 0;
 						if (leftWeight != rightWeight) {
 								switch (seesawType) {
 								case seesawTypes.evenRotation://rotates the same amount regardless of weight
-										if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
-												axis = new Vector3 (0, 0, 1);
-										} else {//right heavy
-												axis = new Vector3 (0, 0, -1);
-										}
 										weightPower = 5;
 										break;
 								case seesawTypes.weightBased://rotates the heaviest side by amount based on weight
 										if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
-												axis = new Vector3 (0, 0, 1);
 												weightPower = Mathf.Abs (leftWeight);
 										} else {//right heavy
-												axis = new Vector3 (0, 0, -1);
 												weightPower = Mathf.Abs (rightWeight);
 										}
 										break;
 								case seesawTypes.weightDifference://rotates the heaviest side by the difference between both sides
 										if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
-												axis = new Vector3 (0, 0, 1);
 												weightPower = Mathf.Abs (leftWeight - rightWeight);
 										} else {//right heavy
-												axis = new Vector3 (0, 0, -1);
 												weightPower = Mathf.Abs (rightWeight - leftWeight);
 										}
 										break;
 								}
+								//rotation direction
+								float angle = seesaw.transform.rotation.eulerAngles.x;
+								if (Mathf.Abs (leftWeight) > Mathf.Abs (rightWeight)) {//left heavy
+									if(angle < 360-maxRotation && angle>180){
+									}else{
+										axis = new Vector3 (0, 0, 1);
+									}
+								} else {//right heavy
+									if(angle > maxRotation && angle<180){
+									}else{
+										axis = new Vector3 (0, 0, -1);
+									}
+								}
+								//don't rotate if it's not that much
 								if (Mathf.Abs (weightPower) < .5) {
 										weightPower = 0;
 								}

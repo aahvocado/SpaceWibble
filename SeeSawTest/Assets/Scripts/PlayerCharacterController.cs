@@ -129,6 +129,8 @@ public class PlayerCharacterController : MonoBehaviour {
 
 		//charController.Move(movement);
 		//Vector3.ClampMagnitude(movement, maxSpeed);
+		if (id ==1)
+			Debug.Log (verticalSpeed);
 		movement = new Vector3(movement.x, verticalSpeed, movement.z);
 
 		//transform.position = Vector3.Lerp(transform.position, movement + transform.position, movementSmoothing);
@@ -210,12 +212,13 @@ public class PlayerCharacterController : MonoBehaviour {
 				grabbedObject.rigidbody.AddForce(throwDir * throwStrength);
 				grabbedObject = null;
 			}
-			}
+		}
 	}
 	
 	public void checkJumping() {
-		if (ControllerInput.A_ButtonDown(id) || (allowKeyboardInput && timeCheck < Time.time)) {
+		if (ControllerInput.A_ButtonDown(id) || (allowKeyboardInput && Input.GetKeyDown(KeyCode.Space))) {
 			if (charController.isGrounded) {
+					Debug.Log("jump");
 				if (mode == PlayerMode.Small) {
 					verticalSpeed = verticalStab;
 				} else if (mode == PlayerMode.Big) {
@@ -226,16 +229,11 @@ public class PlayerCharacterController : MonoBehaviour {
 	}
 
 	public void ApplyGravity () {
-		if (timeCheck < Time.time) {
-			//Debug.Log("isGrounded: " + isGrounded);
-			timeCheck = Time.time + 10;
-		}
 		if (!charController.isGrounded) {
 			verticalSpeed +=  gravity * Time.deltaTime;
 		} else if (charController.isGrounded) {
 			verticalSpeed =  gravity * Time.deltaTime;
 		} else {
-			verticalConstant = transform.position;
 			verticalSpeed -= gravity * Time.deltaTime;
 		}
 	}
